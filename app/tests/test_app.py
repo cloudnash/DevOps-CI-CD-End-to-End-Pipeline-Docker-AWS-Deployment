@@ -20,8 +20,7 @@ def client():
     app.config["TESTING"] = True
     with app.test_client() as client:
         yield client
-
-
+        
 # ── Tests ────────────────────────────────────────────────────────────────────
 
 class TestHomeRoute:
@@ -38,7 +37,6 @@ class TestHomeRoute:
         assert "message" in data
         assert "version" in data
 
-
 class TestHealthRoute:
     def test_health_returns_200(self, client):
         response = client.get("/health")
@@ -47,7 +45,6 @@ class TestHealthRoute:
     def test_health_status_healthy(self, client):
         data = client.get("/health").get_json()
         assert data["status"] == "healthy"
-
 
 class TestInfoRoute:
     def test_info_returns_200(self, client):
