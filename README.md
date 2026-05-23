@@ -109,16 +109,51 @@ Push to GitHub
 
 ```
 
+
+
+
+### Key features of the pipeline:
+
+-🔴 Fails fast — if tests fail, nothing gets deployed
+-🐳 Docker layer caching — faster builds on repeated runs
+-🔐 Secrets management — credentials stored in GitHub Secrets, never in code
+-🩺 Post-deploy health check — confirms the app is alive after deployment
+-🔄 Zero-downtime deploy — old container stays up until new one is healthy
+
 ---
-
-
-Key features of the pipeline:
-
-🔴 Fails fast — if tests fail, nothing gets deployed
-🐳 Docker layer caching — faster builds on repeated runs
-🔐 Secrets management — credentials stored in GitHub Secrets, never in code
-🩺 Post-deploy health check — confirms the app is alive after deployment
-🔄 Zero-downtime deploy — old container stays up until new one is healthy
 
 ## 🚀 Quick Start
 
+### Run Locally
+
+```
+git clone https://github.com/YOUR_USERNAME/devops-cicd-showcase.git
+cd devops-cicd-showcase
+
+pip install -r app/requirements.txt
+cd app && python app.py
+```
+### Run with Docker
+
+```
+docker build -f docker/Dockerfile -t devops-showcase-app .
+docker run -p 5000:5000 devops-showcase-app
+```
+
+### Run with Docker Compose
+```
+cd docker && docker-compose up --build
+```
+
+### Run Tests
+```
+pytest app/tests/ -v
+```
+
+### Test the API:
+```
+curl http://localhost:5000/          # App info
+curl http://localhost:5000/health    # Health check
+curl http://localhost:5000/info      # System info
+```
+---
