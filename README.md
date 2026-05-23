@@ -41,7 +41,7 @@ Developer Pushes Code
 | **Application** | Python / Flask | Simple REST API |
 | **Containerization** | Docker | Package app + dependencies |
 | **Orchestration** | Kubernetes | Scale and manage containers |
-| **CI/CD** GitHub** | Actions | Automate test → build → deploy |
+| **CI/CD** | GitHub Actions | Automate test → build → deploy |
 | **Cloud** | AWSEC2 | Host the production server |
 | **Registry** | Docker Hub | Store Docker images |
 | **Testing** | Pytest | Unit tests |
@@ -108,7 +108,6 @@ Push to GitHub
                      No Deploy                                       Pass? → ✅
 
 ```
-
 
 
 
