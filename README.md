@@ -254,3 +254,20 @@ Features configured:
 | **Python scripting** | scripts/health_check.py |
 | **Unit testing** | app/tests/test_app.py |
 | **Git branching** | main / develop branch strategy |
+
+---
+
+## 🤝 Contributing
+
+This is an internship learning project. Feel free to fork, explore, and learn from it!
+
+---
+
+*📞 Contact*
+---
+
+- GitHub: [@cloudnash](https://github.com/cloudnash)
+- LinkedIn: [Nashit Ahmad](https://in.linkedin.com/in/nashitahmad)
+- Email: nashitakerfeldt@gmail.com
+
+---
