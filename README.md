@@ -113,11 +113,11 @@ Push to GitHub
 
 ### Key features of the pipeline:
 
--🔴 Fails fast — if tests fail, nothing gets deployed
--🐳 Docker layer caching — faster builds on repeated runs
--🔐 Secrets management — credentials stored in GitHub Secrets, never in code
--🩺 Post-deploy health check — confirms the app is alive after deployment
--🔄 Zero-downtime deploy — old container stays up until new one is healthy
+-Fails fast — if tests fail, nothing gets deployed
+-Docker layer caching — faster builds on repeated runs
+-Secrets management — credentials stored in GitHub Secrets, never in code
+-Post-deploy health check — confirms the app is alive after deployment
+-Zero-downtime deploy — old container stays up until new one is healthy
 
 ---
 
