@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Kubernetes Service — Expose the app to external traffic
+# Apply with: kubectl apply -f k8s/service.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-showcase-service
+  namespace: default
+  labels:
+    app: devops-showcase-app
+spec:
+  type: LoadBalancer          # Use NodePort for local/Minikube testing
+  selector:
+    app: devops-showcase-app  # Must match the pod labels in deployment.yaml
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80                # External port
+      targetPort: 5000        # Container port
+
+---
+# ─────────────────────────────────────────────────────────────────────────────
+# Horizontal Pod Autoscaler — Scale pods based on CPU usage
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: devops-showcase-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: devops-showcase-app
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70    # Scale up when CPU > 70%
