@@ -3,7 +3,7 @@ This project simulates a real-world DevOps workflow — from writing code to dep
 
 Goal: Show that I can build, test, containerize, and deploy an application automatically — with zero manual steps after a git push.
 
-🏗️ Architecture
+##🏗️ Architecture
 
 ```
 Developer Pushes Code
@@ -30,11 +30,12 @@ Developer Pushes Code
          └── GET /info      → System Info
 ```
 
-🛠️ Tech Stack
+##🛠️ Tech Stack
+
 LayerTechnologyPurposeApplicationPython / FlaskSimple REST APIContainerizationDockerPackage app + dependenciesOrchestrationKubernetesScale and manage containersCI/CDGitHub ActionsAutomate test → build → deployCloudAWS EC2Host the production serverRegistryDocker HubStore Docker imagesTestingPytestUnit testsMonitoringShell / Python scriptsHealth checks
 
 
-📁 Project Structure
+## 📁 Project Structure
 
 ```
 devops-cicd-showcase/
@@ -72,4 +73,32 @@ devops-cicd-showcase/
 └── README.md                        # You are here
 
 ```
+## CI/CD Pipeline
+
+The pipeline runs automatically on every git push to main or develop.
+
+```
+
+Push to GitHub
+      │
+      ▼
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────────┐     ┌──────────────┐
+ │  🔍 Lint    │────▶│  🧪 Test   │────▶│  🐳 Docker      │────▶│  🚀 Deploy  │
+ │  (Flake8)   │     │  (Pytest)   │     │  Build & Push   │     │  (SSH→EC2)  │
+ └─────────────┘     └─────────────┘     └─────────────────┘     └──────────────┘
+                           │                                             │
+                     Fails? → ❌                                   Health Check
+                     No Deploy                                       Pass? → ✅
+
+```
+
+Key features of the pipeline:
+
+🔴 Fails fast — if tests fail, nothing gets deployed
+🐳 Docker layer caching — faster builds on repeated runs
+🔐 Secrets management — credentials stored in GitHub Secrets, never in code
+🩺 Post-deploy health check — confirms the app is alive after deployment
+🔄 Zero-downtime deploy — old container stays up until new one is healthy
+
+## 🚀 Quick Start
 
