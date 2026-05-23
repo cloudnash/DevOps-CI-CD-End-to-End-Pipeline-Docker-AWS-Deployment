@@ -113,11 +113,11 @@ Push to GitHub
 
 ### Key features of the pipeline:
 
--Fails fast — if tests fail, nothing gets deployed
--Docker layer caching — faster builds on repeated runs
--Secrets management — credentials stored in GitHub Secrets, never in code
--Post-deploy health check — confirms the app is alive after deployment
--Zero-downtime deploy — old container stays up until new one is healthy
+- Fails fast — if tests fail, nothing gets deployed
+- Docker layer caching — faster builds on repeated runs
+- Secrets management — credentials stored in GitHub Secrets, never in code
+- Post-deploy health check — confirms the app is alive after deployment
+- Zero-downtime deploy — old container stays up until new one is healthy
 
 ---
 
@@ -156,3 +156,68 @@ curl http://localhost:5000/health    # Health check
 curl http://localhost:5000/info      # System info
 ```
 ---
+
+## ☁️ AWS Deployment
+
+```
+# 1. Launch Ubuntu EC2 instance (t2.micro — Free Tier)
+# 2. SSH in and run the bootstrap script
+ssh -i your-key.pem ubuntu@YOUR_EC2_IP
+sudo bash infrastructure/aws/ec2-setup.sh
+
+# 3. Deploy the app
+bash scripts/deploy.sh production latest
+
+# 4. Verify
+curl http://YOUR_EC2_IP:5000/health
+```
+
+### Full walkthrough: docs/DEPLOYMENT.md
+
+---
+
+## 📊 Monitoring
+```
+# Continuous health monitoring (checks every 30s)
+bash scripts/monitor.sh http://localhost:5000 30
+
+# One-time health check with verbose output
+python scripts/health_check.py --url http://localhost:5000 --verbose
+```
+
+Sample output:
+
+```
+=======================================================
+  🔍 Health Check Report — 2024-11-01 10:30:00 UTC
+  Base URL: http://localhost:5000
+=======================================================
+
+  ✅ /health       → HEALTHY       [HTTP 200] 12ms
+  ✅ /             → HEALTHY       [HTTP 200] 8ms
+  ✅ /info         → HEALTHY       [HTTP 200] 9ms
+
+=======================================================
+  ✅ All checks passed. Application is healthy.
+=======================================================
+```
+
+---
+
+## ☸️ Kubernetes (Local with Minikube)
+
+```
+minikube start
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+
+kubectl get pods          # Watch pods start
+kubectl get services      # Get external IP
+```
+
+Features configured:
+
+- Rolling updates — zero-downtime deployments
+- Liveness & Readiness probes — automatic restart on crash
+- Horizontal Pod Autoscaler — scales 2–5 pods based on CPU load
+- Resource limits — prevents runaway memory/CPU usage
