@@ -221,3 +221,32 @@ Features configured:
 - Liveness & Readiness probes — automatic restart on crash
 - Horizontal Pod Autoscaler — scales 2–5 pods based on CPU load
 - Resource limits — prevents runaway memory/CPU usage
+
+---
+
+## 🔑 GitHub Secrets Required
+
+### To enable the full CI/CD pipeline, add these in Settings → Secrets → Actions:
+
+| Secret | Description |
+|---|---|
+| **DOCKERHUB_USERNAME** | Docker Hub username |
+| **DOCKERHUB_TOKEN** | Docker Hub access token |
+| **SERVER_HOSTEC2** | public IP address |
+| **SERVER_USER** | SSH user (ubuntu) |
+| **SERVER_SSH_KEY** | EC2 private key (.pem content) |
+
+---
+
+## 📚 What I Learned
+
+| Skill | Implemented In |
+|---|---|
+| **CI/CD pipelines** | .github/workflows/ci-cd.yml |
+| **Docker multi-stage** | buildsdocker/Dockerfile |
+| **Container orchestration** | k8s/deployment.yaml |
+| **Linux scriptings** | cripts/monitor.sh, deploy.sh |
+| **AWS EC2 setup** | infrastructure/aws/ec2-setup.sh |
+| **Python scripting** | scripts/health_check.py |
+| **Unit testing** | app/tests/test_app.py |
+| **Git branching** | main / develop branch strategy |
