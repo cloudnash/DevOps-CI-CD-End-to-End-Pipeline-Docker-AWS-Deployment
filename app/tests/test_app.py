@@ -2,16 +2,15 @@
 Unit Tests for DevOps Showcase App
 Run with: pytest app/tests/test_app.py -v
 """
-from app import app
-import pytest
-import sys
 import os
-
+import sys
 
 # Add app directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-
+# flake8 requires these imports after the path manipulation
+import pytest  # noqa: E402
+from app import app  # noqa: E402
 
 
 @pytest.fixture
@@ -20,10 +19,12 @@ def client():
     app.config["TESTING"] = True
     with app.test_client() as client:
         yield client
-        
+
+
 # ── Tests ────────────────────────────────────────────────────────────────────
 
 class TestHomeRoute:
+
     def test_home_returns_200(self, client):
         response = client.get("/")
         assert response.status_code == 200
@@ -37,7 +38,9 @@ class TestHomeRoute:
         assert "message" in data
         assert "version" in data
 
+
 class TestHealthRoute:
+
     def test_health_returns_200(self, client):
         response = client.get("/health")
         assert response.status_code == 200
@@ -46,7 +49,9 @@ class TestHealthRoute:
         data = client.get("/health").get_json()
         assert data["status"] == "healthy"
 
+
 class TestInfoRoute:
+
     def test_info_returns_200(self, client):
         response = client.get("/info")
         assert response.status_code == 200
