@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: your-dockerhub-username/devops-showcase-app:latest
+          image: nashit836/devops-showcase-app:latest
           ports:
             - containerPort: 5000
 
