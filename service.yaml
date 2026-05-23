@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Kubernetes Deployment — devops-showcase-app
+# Apply with: kubectl apply -f k8s/deployment.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-showcase-app
+  namespace: default
+  labels:
+    app: devops-showcase-app
+    version: "1.0.0"
+spec:
+  replicas: 2                        # Run 2 pods for high availability
+  selector:
+    matchLabels:
+      app: devops-showcase-app
+  strategy:
+    type: RollingUpdate              # Zero-downtime deployments
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: devops-showcase-app
+    spec:
+      containers:
+        - name: app
+          image: your-dockerhub-username/devops-showcase-app:latest
+          ports:
+            - containerPort: 5000
+
+          # Environment variables
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+            - name: APP_VERSION
+              value: "1.0.0"
+
+          # Resource limits — prevent a single pod from hogging resources
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+
+          # Liveness probe — restart the container if app is unresponsive
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
+          # Readiness probe — only send traffic when app is ready
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
