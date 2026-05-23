@@ -3,7 +3,9 @@ This project simulates a real-world DevOps workflow — from writing code to dep
 
 Goal: Show that I can build, test, containerize, and deploy an application automatically — with zero manual steps after a git push.
 
-##🏗️ Architecture
+---
+
+## 🏗️Architecture
 
 ```
 Developer Pushes Code
