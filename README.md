@@ -37,7 +37,7 @@ Developer Pushes Code
 ## 🛠️Tech Stack
 
 | Layer | Technology | Purpose |
-|---|---|
+|---|---|---|
 | **Application** | Python / Flask | Simple REST API |
 | **Containerization** | Docker | Package app + dependencies |
 | **Orchestration** | Kubernetes | Scale and manage containers |
