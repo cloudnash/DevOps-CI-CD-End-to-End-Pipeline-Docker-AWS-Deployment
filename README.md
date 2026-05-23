@@ -32,10 +32,13 @@ Developer Pushes Code
          └── GET /info      → System Info
 ```
 
-##🛠️ Tech Stack
+---
+
+## 🛠️Tech Stack
 
 LayerTechnologyPurposeApplicationPython / FlaskSimple REST APIContainerizationDockerPackage app + dependenciesOrchestrationKubernetesScale and manage containersCI/CDGitHub ActionsAutomate test → build → deployCloudAWS EC2Host the production serverRegistryDocker HubStore Docker imagesTestingPytestUnit testsMonitoringShell / Python scriptsHealth checks
 
+---
 
 ## 📁 Project Structure
 
@@ -75,7 +78,10 @@ devops-cicd-showcase/
 └── README.md                        # You are here
 
 ```
-## CI/CD Pipeline
+
+---
+
+## ⚙️CI/CD Pipeline
 
 The pipeline runs automatically on every git push to main or develop.
 
@@ -93,6 +99,9 @@ Push to GitHub
                      No Deploy                                       Pass? → ✅
 
 ```
+
+---
+
 
 Key features of the pipeline:
 
