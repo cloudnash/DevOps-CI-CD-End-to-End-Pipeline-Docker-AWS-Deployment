@@ -259,7 +259,7 @@ Features configured:
 
 ## 🤝 Contributing
 
-This is an internship learning project. Feel free to fork, explore, and learn from it!
+This is an learning project. Feel free to fork, explore, and learn from it!
 
 ---
 
