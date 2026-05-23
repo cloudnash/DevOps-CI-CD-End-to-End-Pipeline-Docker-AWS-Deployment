@@ -2,15 +2,16 @@
 Unit Tests for DevOps Showcase App
 Run with: pytest app/tests/test_app.py -v
 """
-
+from app import app
 import pytest
 import sys
 import os
 
+
 # Add app directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from app import app
+
 
 
 @pytest.fixture
