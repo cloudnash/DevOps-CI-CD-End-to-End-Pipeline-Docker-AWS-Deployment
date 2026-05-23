@@ -36,7 +36,16 @@ Developer Pushes Code
 
 ## 🛠️Tech Stack
 
-LayerTechnologyPurposeApplicationPython / FlaskSimple REST APIContainerizationDockerPackage app + dependenciesOrchestrationKubernetesScale and manage containersCI/CDGitHub ActionsAutomate test → build → deployCloudAWS EC2Host the production serverRegistryDocker HubStore Docker imagesTestingPytestUnit testsMonitoringShell / Python scriptsHealth checks
+| Layer | Technology | Purpose |
+|---|---|
+| **Application** | Python / Flask | Simple REST API |
+| **Containerization** | Docker | Package app + dependencies |
+| **Orchestration** | Kubernetes | Scale and manage containers |
+| **CI/CD** GitHub** | Actions | Automate test → build → deploy |
+| **Cloud** | AWSEC2 | Host the production server |
+| **Registry** | Docker Hub | Store Docker images |
+| **Testing** | Pytest | Unit tests |
+| **Monitoring** | Shell / Python scripts | Health checks |
 
 ---
 
